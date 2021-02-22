@@ -1,0 +1,55 @@
+<div class="">
+    <div class="encabezadoTabla">
+      <h1>Lista de Empleados</h1>
+    </div>
+    <hr />
+    <div class="container col-md-12">
+     
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-2 col-md-offset-2"><button type="button" name="button" (click)="altaUsuario()" class="btn btn-primary">Alta Usuario</button>
+        </div>
+        <div class="col-md-1 col-md-offset-1"><button type="button" name="button" (click)="salir()" class="btn btn-danger">Salir</button>
+       
+    </div>
+    </div>
+    <hr />
+    <br>
+    <div class="tableas">
+        <ngx-datatable
+        class="bootstrap"
+        [rows]="rows"
+        [columns]="[{name:'nombre'},{name:'apellidoPat'},{name:'apellidoMat'},{name:'email'}
+        ,{name:'telefono'},{name:'compania'},{name:'nacimiento'}]"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [scrollbarV]="true"
+          [footerHeight]="50"
+          [rowHeight]="50"
+          [externalPaging]="true"
+          [count]="10"
+          [offset]="4">
+          <ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
+          <ngx-datatable-column name="Apellido Paterno" prop="apellidoPat"></ngx-datatable-column>
+          <ngx-datatable-column name="Apellido Materno" prop="apellidoMat"></ngx-datatable-column>
+          <ngx-datatable-column name="Email" prop="email"></ngx-datatable-column>
+          <ngx-datatable-column name="Teléfono" prop="telefono"></ngx-datatable-column>
+          <ngx-datatable-column name="Empresa" prop="compania"></ngx-datatable-column>
+          <ngx-datatable-column name="Fecha de Nacimiento" prop="nacimiento"></ngx-datatable-column>
+          <ngx-datatable-column name="Acciones">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <button type="submit" class="btn btn-success" (click)="edit(row.id)">
+                <img class= "icon" src="../../../assets/img/editar.svg" id="icon" alt="User Icon" />
+              </button>
+              <button type="submit" class="btn btn-danger" (click)="delete(row.id)">
+                <img class= "icon" src="../../../assets/img/basura.svg" id="icon" alt="User Icon" />
+              </button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+      <div class="alert alert-danger" *ngIf="eliminado">¡El registro fue eliminado correctamente!</div>
+</div>
+<div>
+  
+</div>
